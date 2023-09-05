@@ -1,10 +1,10 @@
-import axios from "@/utils/request";
+import http from "@/utils/http";
 
 const users = {
-    get: () => axios.post('/users/getAccountList'),
-    add: () => axios.post('/users/getAccountList'),
-    update: () => axios.post('/users/getAccountList'),
-    delete: () => axios.post('/users/getAccountList'),
+    get: () => http.post('/users/getAccountList'),
+    add: () => http.post('/users/getAccountList'),
+    update: () => http.post('/users/getAccountList'),
+    delete: (data) => http.delete('/users/delAccount?_id=' + data),
 }
 
 export default users
