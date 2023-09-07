@@ -4,7 +4,7 @@ import HomePage from '../layout/home/HomePage'
 import LayoutPage from '../layout/LayoutPage'
 import ShopsPage from "@/layout/shops/ShopsPage";
 import UserPage from "@/pages/user/UserPage";
-import CategoryPage from "@/layout/commodity/categoryPage";
+import CategoryPage from "@/layout/goods/categoryPage";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 const LoginPage = lazy(() => import('../pages/login/LoginPage'))
