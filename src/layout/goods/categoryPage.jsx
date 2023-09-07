@@ -1,6 +1,7 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import { Space, Table, Tag } from 'antd';
+import React, { useEffect, useMemo, useState, useRef } from 'react'
+import { Space, Table, Tag, Button } from 'antd';
 import api from '@/apis/index';
+import CategoryAction from './CategoryAction';
 const categoryPage = () => {
 
     const columns = [
@@ -30,6 +31,7 @@ const categoryPage = () => {
     ]
 
     const [category, setCategory] = useState([]);
+    const childRef = useRef();
 
     const allCategory = useMemo(() => {
         return category.map(item => {
@@ -71,6 +73,12 @@ const categoryPage = () => {
 
     return (
         <>
+            <div style={{ marginBottom: 20 }}>
+                <Button type='primary' onClick={() => {
+                    // 父组件调用子组件的方法
+                    childRef.current.openModal();
+                }}>添加一级分类</Button>
+            </div>
             <Table columns={columns} dataSource={allCategory} rowKey="_id"
                 expandable={{
                     indentSize: 50,
@@ -80,6 +88,7 @@ const categoryPage = () => {
                         }
                     }
                 }} />
+            <CategoryAction ref={childRef} getCategory={getCategory} />
         </>
     )
 };

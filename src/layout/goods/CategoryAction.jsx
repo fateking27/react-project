@@ -1,6 +1,6 @@
 import React, { useEffect, useImperativeHandle, useMemo, useState } from 'react'
 import { Modal, Form, Select, Input, message } from 'antd'
-import api from '@/api';
+import api from '@/apis/index';
 
 const CategoryAction = (props, ref) => {
     const [form] = Form.useForm();
@@ -80,7 +80,7 @@ const CategoryAction = (props, ref) => {
     }
 
     return (
-        <Modal title="新增分类" open={open} onOk={onOk} onCancel={closeModal}>
+        <Modal title="新增分类" open={open} onOk={onOk} onCancel={closeModal} forceRender>
             <Form form={form}>
                 <Form.Item label="分类层级" name="type">
                     <Select onChange={(value) => {
