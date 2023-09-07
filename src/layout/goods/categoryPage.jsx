@@ -23,7 +23,10 @@ const categoryPage = () => {
                     <Space>
                         <a>删除</a>
                         <a>修改</a>
-                        {record.parentId == 0 && <a>添加子分类</a>}
+                        {record.parentId == 0 && <a onClick={() => {
+                            // 父组件调用子组件的方法
+                            childRef.current.openModal();
+                        }}>添加子分类</a>}
                     </Space>
                 )
             }
@@ -77,7 +80,7 @@ const categoryPage = () => {
                 <Button type='primary' onClick={() => {
                     // 父组件调用子组件的方法
                     childRef.current.openModal();
-                }}>添加一级分类</Button>
+                }}>添加分类</Button>
             </div>
             <Table columns={columns} dataSource={allCategory} rowKey="_id"
                 expandable={{

@@ -43,10 +43,11 @@ const CategoryAction = (props, ref) => {
 
     // 打开弹窗
     const openModal = (formData) => {
-        setFormData(formData);
-        // 设置表单的默认值
-        form.setFieldsValue(formData);
-
+        if (formData) {
+            setFormData(formData);
+            // 设置表单的默认值
+            form.setFieldsValue(formData);
+        }
         setOpen(true);
     }
 
