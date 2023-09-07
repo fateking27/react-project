@@ -13,7 +13,7 @@ const items = [
     {
         key: '5', label: '商品管理', icon: <PieChartOutlined />,
         children: [
-            { key: '5-1', label: '商品分类' },
+            { key: '5-1', label: <Link to='/category'>商品分类</Link> },
             { key: '5-2', label: '商品列表' },
         ]
     },

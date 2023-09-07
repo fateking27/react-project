@@ -9,7 +9,12 @@ const LayoutPage = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+
+
+
+
   return (
+
     <Layout style={{ minHeight: '100vh' }}>
       <Sider>
         <div className='logo'></div>
