@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Space, Table, Image } from 'antd'
+import { Button, Space, Table, Image, Input, Select } from 'antd'
+const { Search } = Input;
 import api from '@/apis';
 
 function goodList() {
 
     const [goods, setGoods] = useState([]);
+    const [search, setSearch] = useState([]);
 
     const getGoods = async () => {
         const res = await api.goods.findGoods()
         console.log(res)
         setGoods(res.data)
+    }
+
+    const onSearch = async (data) => {
+        const res = await api.goods.searchGoods(data)
+        console.log(res)
+        setSearch()
     }
 
     useEffect(() => {
@@ -20,7 +28,7 @@ function goodList() {
     const columns = [
         {
             title: '商品图片',
-            dataIndex: 'imgSrc',render: (value) => {
+            dataIndex: 'imgSrc', render: (value) => {
                 return <Image
                     width={60}
                     height={60}
@@ -31,51 +39,40 @@ function goodList() {
                 />
             }
         },
+        { title: '商品名称', dataIndex: 'name', },
+        { title: '商品价格', dataIndex: 'price', },
+        { title: '商品分类', dataIndex: ['type', 'name'], width: 150, align: 'center' },
+        { title: '商品简介', dataIndex: 'title', ellipsis: true },
+        { title: '商品详情', dataIndex: 'msg', ellipsis: true },
         {
-            title: '商品名称',
-            dataIndex: 'name',
-            render: (text) => {
-                return <span>{text}</span>
-            }
-        },
-        {
-            title: '商品价格',
-            dataIndex: 'price',
-        },
-        {
-            title: '商品分类',
-            dataIndex: ['type', 'name'],
-        },
-        {
-            title: '商品简介',
-            dataIndex: 'msg',
-            ellipsis: true
-        },
-        {
-            title: '商品详情',
-            dataIndex: 'title',
-            ellipsis: true
-        },
-        {
-            title: '操作',
-            dataIndex: '_id',
-            render: (_id) => (
-                <Space size="middle">
-                    <a onClick={() => { }}>删除</a>
-                    <a>修改</a>
+            title: '操作', dataIndex: '_id', render: (_id) => (
+                <Space size="large">
+                    <a>删除</a>
+                    <Link to="/goods/update" state={{ id: _id }}>修改</Link>
                 </Space>
-            ),
-        },
+            )
+        }
     ];
 
     return (
 
         <>
-            <Button type='primary'>
+            <Button type='primary' style={{ marginBottom: 10 }}>
                 <Link to='/goods/goodlist/goodsAdd'>商品添加</Link>
             </Button>
 
-            <Table columns={columns} dataSource={goods} rowKey="_id" expandable />
+            <Space style={{ marginBottom: 15,marginLeft:350 }}>
+                <Space.Compact>
+                    <Select defaultValue='商品名称'
+                        style={{ width: 150 }} options={[
+                            { label: '商品名称', value: 'name' },
+                            { label: '商品简介', value: 'title' }
+                        ]} />
+                    <Search enterButton onSearch={() => { }}></Search>
+                </Space.Compact>
+            </Space>
+
+            <Table bordered columns={columns} dataSource={goods} rowKey="_id" expandable />
         </>
 
     )
