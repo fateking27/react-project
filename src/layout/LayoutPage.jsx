@@ -28,19 +28,12 @@ const LayoutPage = () => {
           }}
         >
         </Header>
-        <Content
-          style={{
-            margin: 20,
-          }}
-        >
-          <div
-            style={{
-              padding: 20,
-              background: colorBgContainer,
-            }}>
-            <Outlet></Outlet>
+        <Content style={{ margin: 20 }}>
+          <div style={{ padding: 20, background: colorBgContainer, }}>
+            <Outlet>
+              <HomePage></HomePage>
+            </Outlet>
           </div>
-
         </Content>
       </Layout>
     </Layout>

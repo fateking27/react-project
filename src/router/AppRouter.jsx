@@ -6,6 +6,7 @@ import ShopsPage from "@/layout/shops/ShopsPage";
 import UserPage from "@/pages/user/UserPage";
 import CategoryPage from "@/layout/goods/category/categoryPage";
 import GoodList from "@/layout/goods/goodList/goodList";
+import GoodsAdd from "@/layout/goods/goodList/GoodsAdd";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 const LoginPage = lazy(() => import('../pages/login/LoginPage'))
@@ -21,6 +22,7 @@ const AppRouter = () => {
                         <Route path="shops" element={<ShopsPage></ShopsPage>}></Route>
                         <Route path="category" element={<CategoryPage></CategoryPage>}></Route>
                         <Route path="goods/goodlist" element={<GoodList></GoodList>}></Route>
+                        <Route path="goods/goodlist/goodsAdd" element={<GoodsAdd></GoodsAdd>}></Route>
                     </Route>
 
                 </Routes>

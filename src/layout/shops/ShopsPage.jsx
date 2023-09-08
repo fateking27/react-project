@@ -44,7 +44,6 @@ const ShopsPage = () => {
 
   return (
     <>
-
       <Table columns={columns} dataSource={shops} rowKey="id" />
     </>
   )
