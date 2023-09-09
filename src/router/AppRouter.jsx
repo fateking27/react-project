@@ -7,6 +7,7 @@ import UserPage from "@/pages/user/UserPage";
 import CategoryPage from "@/layout/goods/category/categoryPage";
 import GoodList from "@/layout/goods/goodList/goodList";
 import GoodsAdd from "@/layout/goods/goodList/GoodsAdd";
+import WeekTest from "@/pages/WeekTest";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 const LoginPage = lazy(() => import('../pages/login/LoginPage'))
@@ -16,6 +17,7 @@ const AppRouter = () => {
         <Suspense fallback={<p>页面加载中...</p>}>
             <BrowserRouter>
                 <Routes>
+                    <Route path="WeekTest" element={<WeekTest></WeekTest>}></Route>
                     <Route path="/" element={<LayoutPage></LayoutPage>}>
                         <Route path="home" element={<HomePage></HomePage>}></Route>
                         <Route path="users" element={<UserPage></UserPage>}></Route>
