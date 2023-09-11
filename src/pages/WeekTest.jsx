@@ -10,7 +10,7 @@ function WeekTest() {
         { id: 5, img: '../../public/ef3a3558937aaf4a0fab5baf4ca616a.png', },
     ]);
 
-    const DrdgStart = (e, index) => {
+    const DragStart = (e, index) => {
         e.dataTransfer.setData('index', index)
         console.log('ddd', e.dataTransfer.getData('index'))
     }
@@ -39,7 +39,7 @@ function WeekTest() {
                     return <span
                         key={item.id}
                         draggable
-                        onDragStart={(e) => { DrdgStart(e, index) }}
+                        onDragStart={(e) => { DragStart(e, index) }}
                         onDragOver={DragOver}
                         onDrop={(e) => Drop(e, index)}>
                         <img style={{ width: 30, marginTop: 15, padding: 5 }} src={item.img} />
