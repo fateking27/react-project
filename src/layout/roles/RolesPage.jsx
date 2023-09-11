@@ -1,8 +1,9 @@
 import api from '@/apis';
-import { Table } from 'antd';
+import { Tag, Table } from 'antd';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getRolesAsync } from '@/store/roles/actions';
+import { SettingOutlined } from '@ant-design/icons';
 
 const RolesPage = () => {
     // 触发仓库的 reducer 
@@ -22,8 +23,39 @@ const RolesPage = () => {
         dispatch(getRolesAsync())
     }
 
+    const columns = [
+        {
+            title: '角色名称',
+            dataIndex: 'name',
+            render: (name) => {
+                if (name == '超级管理员') {
+                  return <Tag color='red'>{name}</Tag>
+                }
+                if (name == '普通管理员') {
+                  return <Tag color='blue'>{name}</Tag>
+                }
+                if (name) {
+                  return <Tag color='green'>{name}</Tag>
+                }
+                return <Tag>暂无</Tag>
+              }
+        },
+        {
+            title: '权限管理',
+            dataIndex: 'menus',
+            align: 'center',
+            render:() => (
+                <>
+                    <span>
+                        <SettingOutlined style={{ fontSize: '16px', color: '#08c' }}/>
+                    </span>
+                </>
+            )
+        },
+    ];
+
     return (
-        <Table dataSource={roles} rowKey="_id"></Table>
+        <Table dataSource={roles} columns={columns} rowKey="_id"></Table>
     )
 }
 
