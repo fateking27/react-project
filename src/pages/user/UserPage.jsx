@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import api from '@/apis/index'
 import { Switch, Space, Table, Button, message, Popconfirm, Modal, Form, Input, Tag } from 'antd';
 import UsersAction from './UsersAction';
+import useRequest from '@/hooks/useRequest';//引入自定义hook
 
 const UserPage = () => {
 
@@ -12,7 +13,7 @@ const UserPage = () => {
     message.error('取消删除');
   };
 
-
+  const { getUsersAsync, user } = useRequest()
 
   const columns = [
     { title: '用户账号', dataIndex: 'account', align: 'center' },
@@ -82,7 +83,7 @@ const UserPage = () => {
     },
   ];
 
-  const [user, setUser] = useState([]);
+  // const [user, setUser] = useState([]);
   const childRef = useRef();
 
   // 删除
@@ -102,9 +103,10 @@ const UserPage = () => {
   }, [])
 
   const getUsers = async () => {
-    const res = await api.users.get()
+    // const res = await api.users.get()
     // console.log(res)
-    setUser(res.data)
+    // setUser(res.data)
+    getUsersAsync();//调用自定义hook
   }
 
   return (
