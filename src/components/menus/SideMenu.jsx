@@ -17,16 +17,8 @@ const items = [
             { key: '5-2', label: <Link to='/goods/goodlist'>商品列表</Link> },
         ]
     },
-    // getItem('Home', '1', <PieChartOutlined />),
-    // getItem('Shops', '2', <DesktopOutlined />),
-    // getItem('User', '3', <ContainerOutlined />),
-    // getItem('Admin', 'sub1', <MailOutlined />, [
-    //     getItem('Option 5', '5'),
-    //     getItem('Option 6', '6'),
-    //     getItem('Option 7', '7'),
-    //     getItem('Option 8', '8'),
-    // ])
 ];
+
 const SideMenu = () => {
     return (
         <div>
@@ -41,4 +33,5 @@ const SideMenu = () => {
         </div>
     );
 };
+
 export default SideMenu;

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
-import { Form, Input, Button, Cascader, Row, Col, Upload } from 'antd';
+import { Form, Input, Button, Cascader, Row, Col, Upload, Space, message } from 'antd';
 import api from '@/apis/index';
+import { useNavigate } from 'react-router-dom';
 const { TextArea } = Input;
 
 const GoodsAdd = () => {
+    const navigate = useNavigate()
     const [cascader, setCascader] = useState();
     const [loading, setLoading] = useState(false);
-    // const [imageUrl, setImageUrl] = useState();
     const [addItem, setAddItem] = useState({});
 
     const handleChange = (info) => {
@@ -43,34 +44,44 @@ const GoodsAdd = () => {
     const uploadButton = (
         <div>
             {loading ? <LoadingOutlined /> : <PlusOutlined />}
-            <div
-                style={{
-                    marginTop: 8,
-                }}
-            >
+            <div style={{ marginTop: 8, }}>
                 Upload
             </div>
         </div>
     );
 
+    const addGoods = async (FormData) => {
+        const res = await api.goods.addGoods({
+            ...FormData,
+            type: FormData.type.pop(),
+            ...addItem
+        })
+        if (res.code == 1) {
+            message.success('商品新增成功');
+            navigate('/goods/goodlist')
+        } else {
+            message.error(res.msg);
+        }
+    }
+
     return (
         <div>
-            <Form>
+            <Form onFinish={addGoods}>
                 <Row gutter={20}>
                     <Col span={10}>
-                        <Form.Item label="商品名称">
+                        <Form.Item label="商品名称" name="name">
                             <Input />
                         </Form.Item>
-                        <Form.Item label="商品分类">
-                            <Cascader placeholder="选择分类" options={cascader} fieldNames={{ value: '_id',label:"value" }} />
+                        <Form.Item label="商品分类" name='type'>
+                            <Cascader placeholder="选择分类" options={cascader} fieldNames={{ value: '_id' }} />
                         </Form.Item>
-                        <Form.Item label="商品价格">
+                        <Form.Item label="商品价格" name='price'>
                             <Input />
                         </Form.Item>
-                        <Form.Item label="商品简介">
+                        <Form.Item label="商品简介" name='title'>
                             <TextArea rows={4} />
                         </Form.Item>
-                        <Form.Item label="商品详情">
+                        <Form.Item label="商品详情" name='msg'>
                             <TextArea rows={4} />
                         </Form.Item>
                     </Col>
@@ -95,6 +106,16 @@ const GoodsAdd = () => {
                                     uploadButton
                                 )}
                             </Upload>
+                        </Form.Item>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col span={9}></Col>
+                    <Col>
+                        <Form.Item>
+                            <Space>
+                                <Button htmlType='submit' type='primary'>确认新增</Button>
+                            </Space>
                         </Form.Item>
                     </Col>
                 </Row>

@@ -10,9 +10,6 @@ const LayoutPage = () => {
     token: { colorBgContainer },
   } = theme.useToken();
 
-
-
-
   return (
 
     <Layout style={{ minHeight: '100vh' }}>
