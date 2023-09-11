@@ -13,7 +13,7 @@ const UserPage = () => {
     message.error('取消删除');
   };
 
-  const { getUsersAsync, user } = useRequest()
+  const { getUsersAsync, user } = useRequest()//自定义hook结构调用
 
   const columns = [
     { title: '用户账号', dataIndex: 'account', align: 'center' },
@@ -106,6 +106,7 @@ const UserPage = () => {
     // const res = await api.users.get()
     // console.log(res)
     // setUser(res.data)
+    
     getUsersAsync();//调用自定义hook
   }
 
