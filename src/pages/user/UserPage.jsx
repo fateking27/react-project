@@ -23,10 +23,13 @@ const UserPage = () => {
       title: '角色', dataIndex: ['role', 'name'], align: 'center',
       render: (name) => {
         if (name == '超级管理员') {
-          return <Tag color='red'>{name}</Tag>
+          return <Tag color='darkred'>{name}</Tag>
         }
         if (name == '普通管理员') {
-          return <Tag color='blue'>{name}</Tag>
+          return <Tag color='darkblue'>{name}</Tag>
+        }
+        if (name == '商品管理员') {
+          return <Tag color='darkgreen'>{name}</Tag>
         }
         if (name) {
           return <Tag color='green'>{name}</Tag>
@@ -106,7 +109,7 @@ const UserPage = () => {
     // const res = await api.users.get()
     // console.log(res)
     // setUser(res.data)
-    
+
     getUsersAsync();//调用自定义hook
   }
 

@@ -29,10 +29,13 @@ const RolesPage = () => {
             dataIndex: 'name',
             render: (name) => {
                 if (name == '超级管理员') {
-                  return <Tag color='red'>{name}</Tag>
+                  return <Tag color='darkred'>{name}</Tag>
                 }
                 if (name == '普通管理员') {
-                  return <Tag color='blue'>{name}</Tag>
+                  return <Tag color='darkblue'>{name}</Tag>
+                }
+                if (name == '商品管理员') {
+                  return <Tag color='darkgreen'>{name}</Tag>
                 }
                 if (name) {
                   return <Tag color='green'>{name}</Tag>

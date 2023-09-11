@@ -36,6 +36,7 @@ const SideMenu = () => {
                 mode="inline"
                 theme="dark"
                 items={items}
+                style={{position: 'fixed',width:200}}
             />
         </div>
     );
