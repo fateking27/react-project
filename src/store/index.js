@@ -1,11 +1,14 @@
-import { legacy_createStore, combineReducers } from 'redux'
-import rolesReducer from './role/reducers'
+import { legacy_createStore, combineReducers, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk';
+import rolesReducer from './roles/reducers';
 
 // 合并所有模块的 reducer 函数
 const allReducers = combineReducers({
     roles: rolesReducer,
 })
 
-const store = legacy_createStore(allReducers);
+const store = legacy_createStore(allReducers, applyMiddleware(thunk));
 
-export default store
+// console.log(store.getState());
+
+export default store;

@@ -1,4 +1,4 @@
-import React, { Suspense, Lazy, lazy } from "react";
+import React, { Suspense, lazy } from "react";
 // import LoginPage from '../pages/login/LoginPage'
 import HomePage from '../layout/home/HomePage'
 import LayoutPage from '../layout/LayoutPage'
@@ -8,7 +8,7 @@ import CategoryPage from "@/layout/goods/category/categoryPage";
 import GoodList from "@/layout/goods/goodList/goodList";
 import GoodsAdd from "@/layout/goods/goodList/GoodsAdd";
 import WeekTest from "@/pages/WeekTest";
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 const LoginPage = lazy(() => import('../pages/login/LoginPage'))
 
@@ -18,7 +18,10 @@ const AppRouter = () => {
             <BrowserRouter>
                 <Routes>
                     <Route path="WeekTest" element={<WeekTest></WeekTest>}></Route>
+                    {/* 路由重定向跳转 */}
+                    <Route path='/' element={<Navigate to="/home" />}></Route>
                     <Route path="/" element={<LayoutPage></LayoutPage>}>
+                        {/* 二级路由 */}
                         <Route path="home" element={<HomePage></HomePage>}></Route>
                         <Route path="users" element={<UserPage></UserPage>}></Route>
                         <Route path="shops" element={<ShopsPage></ShopsPage>}></Route>
