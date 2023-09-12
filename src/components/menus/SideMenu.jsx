@@ -1,8 +1,9 @@
 import React, { useMemo, useState } from 'react';
-import * as icons from '@ant-design/icons';
+import { PieChartOutlined } from '@ant-design/icons';
+// import * as icons from '@ant-design/icons';
 import { Menu } from 'antd';
 import { Link } from 'react-router-dom';
-import treeData from '@/data/menus';
+// import treeData from '@/data/menus';
 
 const items = [
     { key: '1', label: <Link to='/home'>首页</Link>, icon: <PieChartOutlined /> },
@@ -86,7 +87,8 @@ const SideMenu = () => {
                 defaultOpenKeys={['']}
                 mode="inline"
                 theme="dark"
-                items={menusData}
+                items={items}
+                // items={menusData}
                 style={{ position: 'fixed', width: 200 }}
             />
         </div>

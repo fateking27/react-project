@@ -3,7 +3,7 @@ import axios from "axios";
 
 const instance = axios.create({
     baseURL: 'http://nocat.life:8002',
-    timeout: 3000,
+    // timeout: 3000,
 })
 
 //请求拦截器
